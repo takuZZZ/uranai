@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3498db">
+    <meta name="description" content="明日の運勢を占うPWAアプリ">
+    <title>明日の運勢占い</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192x192.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="container">
+        <h1>明日の運勢占い</h1>
+        <button id="fortune-button" onclick="tellFortune()">占う</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // サービスワーカーを登録
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker登録成功: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker登録失敗: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
